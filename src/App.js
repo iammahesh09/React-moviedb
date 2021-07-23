@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Container } from '@material-ui/core';
 import './App.css';
+import MainNavigation from './Components/MainNavigation/MainNavigation';
+import Trending from './Pages/Trending/Trending';
+import Movies from './Pages/Movies/Movies';
+import Series from './Pages/Series/Series';
+import Search from './Pages/Search/Search';
 
-function App() {
+function App () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <MainNavigation />
+      <div className="App">
+        <Container>
+          <Switch>
+            <Route path='/' component={Trending} exact />
+            <Route path='/movies' component={Movies} />
+            <Route path='/series' component={Series} />
+            <Route path='/search' component={Search} />
+          </Switch>
+        </Container>
+        <div className='pageTop' onClick={() => { window.scroll(0, 0) }}>
+          <div className="page-scrollTop"></div>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
